@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex象棋</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-sizing: border-box;
+            /* border-box：實際寬高＝所設定的數值。*/
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            font-family: '標楷體';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* .container {
+            border: 1px solid black;
+        } */
+
+        .table {
+            width: 740px;
+            height: 800px;
+            border: 2px solid black;
+            padding-top: 35px;
+            text-align: center;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .col {
+            width: 80px;
+            height: 80px;
+            border: 0.5px solid black;
+        }
+
+        .container {
+            width: 40%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .word {
+            writing-mode: vertical-lr;
+            font-size: 2.6rem;
+            font-weight: bolder;
+        }
+
+        .line1::before {
+            content: "";
+            position: absolute;
+            top: 1.7%;
+            left: 45.9%;
+            width: 159px;
+            height: 170px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #000;
+            transform-origin: bottom center;
+            transform: rotateZ(-45deg) scale(1.414)
+        }
+
+        .line2::before {
+            content: "";
+            position: absolute;
+            top: 1.7%;
+            left: 45.81%;
+            width: 159px;
+            height: 170px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #000;
+            transform-origin: bottom center;
+            transform: rotateZ(45deg) scale(1.414)
+        }
+
+        .line3::before {
+            content: "";
+            position: absolute;
+            top: 61.5%;
+            left: 45.8%;
+            width: 159px;
+            height: 170px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #000;
+            transform-origin: bottom center;
+            transform: rotateZ(45deg) scale(1.414)
+        }
+
+        .line4::before {
+            content: "";
+            position: absolute;
+            top: 61.6%;
+            left: 45.9%;
+            width: 159px;
+            height: 170px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #000;
+            transform-origin: bottom center;
+            transform: rotateZ(-45deg) scale(1.414)
+        }
+
+        .left,
+        .right {
+            width: 80px;
+            height: 600px;
+        }
+
+        #in {
+            width: 640px;
+            height: 80px;
+            display: flex;
+            font-size: 45px;
+            font-weight: bold;
+            justify-content: space-evenly;
+            margin-left: 49px;
+            margin-right: 50px;
+            align-items: center;
+            border: 1px solid black;
+        }
+
+        .chess {
+            display: flex;
+            height: 80px;
+            width: 760px;
+            position: absolute;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px 0 15px;
+            top: 6%;
+            left: 32%;
+        }
+
+        .chess-open {
+            display: flex;
+            height: 60px;
+            width: 696px;
+            font-size: 3rem;
+            justify-content: space-between;
+        }
+
+        .chess-boom {
+            display: flex;
+            height: 60px;
+            width: 540px;
+            font-size: 3rem;
+            justify-content: space-between;
+        }
+
+        #boom {
+            top: 23%;
+            left: 36%;
+        }
+
+        #boom2 {
+            top: 65.6%;
+            left: 36%;
+            color: red;
+        }
+
+        .chess-Soldier {
+            display: flex;
+            height: 60px;
+            width: 696px;
+            font-size: 3rem;
+            justify-content: space-between;
+        }
+
+        #master {
+            top: 82.4%;
+            left: 32%;
+            color: red;
+        }
+
+        .cirle {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 50%;
+        }
+
+        #Soldier {
+            top: 31.5%;
+            left: 31.82%;
+        }
+
+        #Soldier2 {
+            top: 56.8%;
+            left: 31.82%;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <p class="word">棋盤裡，車無輪，馬無韁，叫聲將軍提防提防</p>
+    <div class="container">
+        <div class="table">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="line1"></div>
+                <div class="line2"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div id="in">
+                <span>楚河</span>
+                <span>漢界</span>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="line3"></div>
+                <div class="line4"></div>
+            </div>
+            <div class="chess">
+                <div class="chess-open">
+                    <div class="cirle">車</div>
+                    <div class="cirle">馬</div>
+                    <div class="cirle">象</div>
+                    <div class="cirle">士</div>
+                    <div class="cirle">將</div>
+                    <div class="cirle">士</div>
+                    <div class="cirle">象</div>
+                    <div class="cirle">馬</div>
+                    <div class="cirle">車</div>
+                </div>
+            </div>
+            <div class="chess" id="boom">
+                <div class="chess-boom">
+                    <div class="cirle">包</div>
+                    <div class="cirle">包</div>
+                </div>
+            </div>
+            <div class="chess" id="Soldier">
+                <div class="chess-Soldier">
+                    <div class="cirle">卒</div>
+                    <div class="cirle">卒</div>
+                    <div class="cirle">卒</div>
+                    <div class="cirle">卒</div>
+                    <div class="cirle">卒</div>
+                </div>
+            </div>
+            <div class="chess" id="master">
+                <div class="chess-open">
+                    <div class="cirle">俥</div>
+                    <div class="cirle">傌</div>
+                    <div class="cirle">相</div>
+                    <div class="cirle">仕</div>
+                    <div class="cirle">帥</div>
+                    <div class="cirle">仕</div>
+                    <div class="cirle">相</div>
+                    <div class="cirle">傌</div>
+                    <div class="cirle">俥</div>
+                </div>
+            </div>
+            <div class="chess" id="boom2">
+                <div class="chess-boom">
+                    <div class="cirle">炮</div>
+                    <div class="cirle">炮</div>
+                </div>
+            </div>
+            <div class="chess" id="Soldier2">
+                <div class="chess-Soldier">
+                    <div class="cirle">兵</div>
+                    <div class="cirle">兵</div>
+                    <div class="cirle">兵</div>
+                    <div class="cirle">兵</div>
+                    <div class="cirle">兵</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="word">圖畫裡，龍不吟，虎不嘯，小小書僮可笑可笑</p>
+</body>
+</body>
+
+</html>
